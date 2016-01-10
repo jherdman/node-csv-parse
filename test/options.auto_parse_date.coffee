@@ -11,6 +11,7 @@ describe 'Option "auto_parse_date"', ->
     parser.write """
     2000-01-01,date1
     2050-11-27,date2
+    Malbec 2013,date3
     """
     parser.on 'readable', ->
       while(d = parser.read())
@@ -20,5 +21,6 @@ describe 'Option "auto_parse_date"', ->
     parser.on 'finish', ->
       data[0][0].should.be.instanceOf Date
       data[1][0].should.be.instanceOf Date
+      data[2][0].should.be.instanceOf String
       next()
     parser.end()
